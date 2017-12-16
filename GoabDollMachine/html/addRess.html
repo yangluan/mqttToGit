@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>新增收货地址</title>
+    <script src="../js/yang_set_rem.js"></script>
+    <link rel="stylesheet" href="../css/addRess.css">
+    <script src="../js/jquery.js"></script>
+</head>
+<body style="background-color: #AFD3F7;">
+<header>
+    <div class="imgBox"><a href="receivingAddress.html" class="firstA"></a>添加收货地址 </div>
+    <!--  <a href="" class="secondA"></a>   -->
+</header>
+<section>
+    <div class="firstBox">
+        <div class="firstTitle">收件人姓名</div>
+        <div class="firstIpt"><input type="text" placeholder="填写姓名（名字不能超过7位汉字）" id="ipt1" onblur="onf()"></div>
+    </div>
+    <div class="firstBox">
+        <div class="firstTitle">联系方式</div>
+        <div class="firstIpt"><input type="text" placeholder="填写手机号或固定电话" id="ipt2" value="" onblur="onf()"></div>
+    </div>
+    <div class="firstBox">
+        <div class="firstTitle">收件地址</div>
+        <div class="firstIpt"><input type="text" placeholder="填写具体收件地址" id="ipt3" value="" onblur="onf()"></div>
+    </div>
+    <footer onclick="applyDelivery()">
+        <!--  ConfirmOrder.html  -->
+        <!--   <a href="" style="text-decoration: none">  -->
+       <div class="btnAdd" id="addBtn">添加地址</div>
+    </footer>
+</section>
+
+
+<script>
+    var ipt1 = document.getElementById('ipt1');
+    var ipt2 = document.getElementById('ipt2');
+    var ipt3 = document.getElementById('ipt3');
+    var addBtn = document.getElementById('addBtn');
+
+    function onf() {
+        if(ipt1.value!=''&&ipt2.value!=''&&ipt3.value!=''){
+            addBtn.style.backgroundColor = 'green'
+            localStorage.userName = ipt1.value;
+            localStorage.userPhoto = ipt2.value;
+            localStorage.userPrice = ipt3.value;
+        }else{
+            addBtn.style.backgroundColor = 'gray'
+        }
+    }
+
+    //添加地址 接口
+    var local = [];
+    function applyDelivery() {
+        var obj = [ipt1.value,ipt2.value,ipt3.value,'','',''];
+        $.ajax({
+            url: 'http://zhuawawa-debug.hljoy.com/api/1.0.4/address/AddAddress/?token=10004:1512099830:0af71dc955a2b146fbd93ab6d84900b1',
+            header:'Access-Control-Allow-Origin:*',
+            dataType: 'json',
+            method: 'post',
+            data:JSON.stringify(obj),
+            success:function (data) {
+                console.log(data.data);
+                local.push(JSON.stringify(data));
+                localStorage.datas = local
+            }
+        })
+    }
+</script>
+
+</body>
+</html>

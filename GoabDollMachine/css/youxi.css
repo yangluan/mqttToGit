@@ -1,0 +1,191 @@
+
+* {
+    margin: 0;
+    padding: 0; }
+
+body {
+    display: flex;
+    background-color: transparent;
+    overflow: hidden; }
+
+header {
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 5.5rem;}
+header .imgBox {
+    text-align: center;
+    color: white;
+    font-size: 0.96rem;
+    line-height: 3.5rem;
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/title_bg.png");
+    background-size: 100% 5.5rem; }
+header .imgBox a {
+    padding-left: 0.21333rem;
+    width: 1.2rem;
+    height: 1.5rem;
+    display: inline-block;
+    position: absolute;
+    top: 1rem;
+    left: 0.42667rem;
+    background-color: transparent;
+    background-image: url("../images/back.png");
+    -webkit-background-size: 1.2rem 1.5rem; }
+.logo{
+    width: 6rem;
+    height:4rem;
+    margin: -0.5rem auto;
+    background-image: url('../images/title_logo.png');
+    background-size: 100% 4rem;
+    border: 1px solid transparent;
+}
+section{
+    width: 100%;
+    padding-top:3.41333rem ;
+    background-color: transparent;
+}
+.view{
+    width: 100%;
+    height:21rem;
+    /*background-color: red;*/
+    border: 1px solid transparent;
+}
+
+.fourBtn{
+    width: 100%;
+    height: 5rem;
+    position: absolute;
+    top: 23rem;
+}
+.BtnBox{
+    width: 100%;
+    height: 5rem;
+    position: relative;
+    border: 1px solid transparent;
+}
+.startGame{
+    width: 8rem;
+    height:3rem;
+    border: 1px solid transparent;
+    margin: 1rem auto;
+    background-image: url('../images/play_start.png');
+    background-size:100% 3rem;
+}
+.fourBtnGroup{
+    width: 8rem;
+    height:8rem;
+    border: 1px solid transparent;
+    position: absolute;
+    top: -3rem;
+    left: 1rem;
+    display: none;
+}
+.zh{
+    width: 4rem;
+    height:4rem;
+    border: 1px solid transparent;
+    position: absolute;
+    right: 1rem;
+    top:0;
+    display: none;
+}
+.up{
+    top:0;
+    left: 2.5rem;
+}
+.down{
+    bottom: 0;
+    left: 2.5rem;
+}
+.left{
+    top: 2.5rem;
+    left: 0;
+}
+.right{
+    top: 2.5rem;
+    right:0;
+}
+.up,.down,.left,.right{
+    width: 3rem;
+    height:3rem;
+    border: 1px solid transparent;
+    position: absolute;
+    text-align: center;
+    line-height: 3rem;
+}
+.up img,.down img,.left img,.right img{
+    width: 100%;
+}
+.zh img{
+    width: 100%;
+}
+.countdown{
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    border: 1px solid red;
+    top: -1.5rem;
+    right: 2.5rem;
+    font-size: .7rem;
+    text-align: center;
+}
+.talk{
+    width: 2.5rem;
+    height:2.5rem;
+    border: 1px solid transparent;
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    background-image: url('../images/liaotian1.png');
+    background-size:100%;
+}
+.talkInput{
+    display: none;
+    width: 10rem;
+    height:3rem;
+    border: 1px solid transparent;
+    position: absolute;
+    top: 1rem;
+    left: 4rem;
+}
+.talkInput input{
+    width: 8rem;
+    height: 2rem;
+}
+.talkInput button{
+    width: 2rem;
+    position: absolute;
+    height: 2.17rem;
+    text-align: center;
+}
+.view_danM{
+    width:100%;
+    height: 19rem;
+    position: absolute;
+    top: 4rem;
+    border: 1px solid transparent;
+}
+.userVudio{
+    width: 5rem;
+    height: 5rem;
+    background-color: transparent;
+    position: absolute;
+}
+.topNametitle{
+    width: 100%;
+    height: 1rem;
+    background-color: hotpink;
+    text-align: center;
+    line-height: 1rem;
+}
+.bottomVideo{
+    width: 100%;
+    height: 4rem;
+    background-color: gray;
+    color: white;
+    text-align: center;
+    line-height: 4rem;
+}

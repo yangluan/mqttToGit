@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>抓娃娃Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="../js/yang_set_rem.js"></script>
+    <link rel="stylesheet" href="../css/youxi.css">
+    <script src="../js/jquery.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="imgBox"><a href="index.html"></a><div class="logo"></div></div>
+</header>
+
+<section>
+    
+    <div class="fourBtn">
+        <div class="BtnBox">
+            <!--  开始游戏 -->
+            <div class="startGame" id="start"  onclick="playHappy()"></div>
+                <!-- 聊天 -->
+                <!--<div class="talk"></div>-->
+                <!--<div class="talkInput">-->
+                    <!--<input type="text" placeholder="请输入要发送的弹幕" id="talking">-->
+                    <!--<button class="btn">发送</button>-->
+                <!--</div>-->
+            <!--  四个按钮 -->
+            <div class="fourBtnGroup" id="btns">
+                <div class="up" style="z-index: 2"><img src="../images/play_up.png" alt=""></div>
+                <div class="down" style="z-index: 2"><img src="../images/play_down.png" alt=""></div>
+                <div class="left" style="z-index: 2"><img src="../images/play_left.png" alt=""></div>
+                <div class="right" style="z-index: 2"><img src="../images/play_right.png" alt=""></div>
+            </div>
+            <!-- 倒计时 -->
+            <div class="countdown" style="display: none"></div>
+            <!--  爪子 -->
+            <div class="zh" id="zh" style="z-index: 2"><img src="../images/play_catch.png" alt=""></div>
+        </div>
+    </div>
+
+    <!-- 弹幕 -->
+    <div class="view_danM">
+
+    </div>
+    <!--用户视频-->
+    <div class="userVudio" style="display: none">
+        <div class="topNametitle">玩家名称</div>
+        <div class="bottomVideo">玩家视频窗</div>
+    </div>
+    <!-- 放视频窗  -->
+    <div class="view">
+        <!--<video src="../images/8D4D01442683DE67BF4BCDAA30E08280.mp4" width="100%" height="100%" autoplay></video>-->
+    </div>
+</section>
+<script src="../js/crypto-js.js"></script>
+<script src="../js/hljoy.js"></script>
+<script src="../js/AgoraRTCSDK-1.14.0.js"></script>
+<script src="../js/demo.js"></script>
+<script src="../js/jquery.js"></script>
+<script src="../js/paho-mqtt.js"></script>
+<script src="../js/MqttProxy.js"></script>
+<script src="../js/mqttws31.js"></script>
+<script src="../js/dm.js"></script>
+<script src="../js/config.js"></script>
+
+
+<script>
+    var btns = document.getElementById('btns'); //四个按钮
+    var zh = document.getElementById('zh');     //抓娃娃
+    var timer;
+    var countdown = document.getElementsByClassName('countdown')[0];
+//抓娃娃
+    //倒计时
+    function countdow() {
+         --countdown.innerText;
+         if(countdown.innerText == 0){
+             clearInterval(timer);
+             countdown.style.display = 'none';
+             btns.style.display = 'none';
+             zh.style.display = 'none';
+             start.style.display = 'block';
+         }
+    }
+    var dm,MqttProxy;
+    function Page(id) {
+        var element = document.getElementById(id);
+        this.setStatus = function(status) {
+            element.className = 'page ' + status;
+            console.log(status)
+        }
+    }
+    function playHappy() {
+//        window.redfire.setReadyGo(10002,10002);
+        countdown.innerText = 30;
+        timer = setInterval(countdow,1000);
+        start.style.display = 'none';
+        btns.style.display = 'block';
+        countdown.style.display = 'block';
+        zh.style.display = 'block';
+        var facade = {
+            userId: '10004',
+            config: {
+                aliyunIotHost: '.iot-as-mqtt.cn-shanghai.aliyuncs.com'
+            }
+        };
+        var deviceId = localStorage.DeviceId;
+        var deviceName = localStorage.DeviceName;
+        var deviceSecret = localStorage.DeviceSecret;
+        var productKey = localStorage.ProductKey;
+        MqttProxy(facade, productKey, deviceId, deviceName, deviceSecret,function () {
+            var page = new Page('btns');
+            page.setStatus('playing');
+            dm = new DollMachine('wawaji-beijing-00010001', mqttProxy, hljoy);
+            dm.start();
+        });
+    }
+
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
